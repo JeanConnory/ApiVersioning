@@ -6,7 +6,8 @@ using System.Net;
 namespace ApiVersioning.Controllers.Cliente.V2
 {
     [ApiVersion("2.0")]
-    [Route("api/[controller]")]
+    [ApiVersion("2.1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
@@ -27,6 +28,15 @@ namespace ApiVersioning.Controllers.Cliente.V2
             //clienteService.Inserir(cliente);
 
             return StatusCode((int)HttpStatusCode.Created);
+        }
+
+        [MapToApiVersion("2.1")]
+        [HttpPost]
+        public IActionResult PostV21(ClienteVm2 cliente)
+        {
+            //clienteService.Inserir(cliente);
+
+            return Ok("Post v2.1");
         }
     }
 }

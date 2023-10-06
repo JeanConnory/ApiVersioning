@@ -5,7 +5,7 @@ using System.Net;
 namespace ApiVersioning.Controllers.Cliente.V1
 {
     [ApiVersion("1.0", Deprecated = true)]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")] //Usa o version se quiser
     [ApiController]
     public class ClienteController : ControllerBase
     {

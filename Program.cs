@@ -10,7 +10,14 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
-    options.ApiVersionReader = new HeaderApiVersionReader("version");
+    //options.ApiVersionReader = new QueryStringApiVersionReader();
+    options.ApiVersionReader = new HeaderApiVersionReader("version"); //Pode usar queryString, content type, header, url
+});
+
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
 });
 
 builder.Services.AddControllers();
